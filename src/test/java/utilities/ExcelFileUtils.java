@@ -40,8 +40,10 @@ public class ExcelFileUtils {
 		{
 			//read integer type cell data
 			int celldata =(int)wb.getSheet(SheetName).getRow(row).getCell(column).getNumericCellValue();
+			System.out.println("Cell data " + celldata);
 			//valueof---it converts int type to String type
 			data = String.valueOf(celldata);
+			System.out.println(" data " + data);
 		}
 		else
 		{
@@ -101,7 +103,7 @@ public class ExcelFileUtils {
 		FileOutputStream fo =new FileOutputStream(writeExcel);
 		wb.write(fo);
 	}
-	public static void main(String[] args) throws Throwable {
+	/*public static void main(String[] args) throws Throwable {
 		ExcelFileUtils xl =new ExcelFileUtils("D:\\Sample.xlsx");
 		int rc =xl.rowCount("Emp");
 		System.out.println(rc);
@@ -115,10 +117,10 @@ public class ExcelFileUtils {
 			System.out.println(fname+ "    "+mname+"    "+lname+"  "+eid);
 			//xl.setCelldata("Emp",i, 4, "Pass","D://Result.xlsx" );
 			//xl.setCelldata("Emp",i, 4, "Fail","D://Result1.xlsx" );
-			xl.setCelldata("Emp",i, 4, "Blocked","D://Result2.xlsx" );
+			xl.setCelldata("Emp",i, 4, "Blocked","D://Result5.xlsx" );
 		}
 	
 		
 		
-	}
+	}*/
 }
