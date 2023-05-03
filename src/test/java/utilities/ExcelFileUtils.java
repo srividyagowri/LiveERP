@@ -41,9 +41,10 @@ public class ExcelFileUtils {
 			//read integer type cell data
 			int celldata =(int)wb.getSheet(SheetName).getRow(row).getCell(column).getNumericCellValue();
 			System.out.println("Cell data " + celldata);
+			System.out.println("Sheetname " + SheetName);
 			//valueof---it converts int type to String type
 			data = String.valueOf(celldata);
-			System.out.println(" data " + data);
+			//System.out.println(" data " + data);
 		}
 		else
 		{
@@ -106,7 +107,7 @@ public class ExcelFileUtils {
 	/*public static void main(String[] args) throws Throwable {
 		ExcelFileUtils xl =new ExcelFileUtils("D:\\Sample.xlsx");
 		int rc =xl.rowCount("Emp");
-		System.out.println(rc);
+		//System.out.println(rc);
 		
 		for (int i=1;i<=rc;i++)
 		{

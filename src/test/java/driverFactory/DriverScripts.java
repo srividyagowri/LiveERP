@@ -22,17 +22,17 @@ public class DriverScripts extends FunctionLibrary {
 			//String TCModule =xl.getCellData("MasterTestCases", i, 1);
 			if(xl.getCellData("MasterTestCases", i, 2).equalsIgnoreCase("Y"))
 			{
-				System.out.println("Entered 1st if");
+				//System.out.println("Entered 1st if");
 				//Store corresponding sheet into variable
 				String TCModule =xl.getCellData("MasterTestCases", i, 1);
-				System.out.println("Entered " + TCModule);
+				//System.out.println("Entered " + TCModule);
 				//iterate all rows in TCModule Sheet
 				
 				for(int j=1;j<=xl.rowCount(TCModule);j++)
 				{
 					int d = xl.rowCount(TCModule);
-					System.out.println( d);
-					System.out.println("Entered 2nd if");
+					//System.out.println( d);
+					//System.out.println("Entered 2nd if");
 					//call all cells(i for testcases ,j forcorresponding sheet)
 					String Description =xl.getCellData(TCModule, j, 0);
 					String Object_Type =xl.getCellData(TCModule, j, 1);
@@ -44,11 +44,11 @@ public class DriverScripts extends FunctionLibrary {
 						{
 							driver =FunctionLibrary.startBrowser();
 						}
-						else if(Object_Type.equalsIgnoreCase("openUrl "))
+						else if(Object_Type.equalsIgnoreCase("openUrl"))
 						{
 							FunctionLibrary.openUrl(driver);
 						}
-						else if (Object_Type.equalsIgnoreCase("waitforElement "))
+						else if (Object_Type.equalsIgnoreCase("waitforElement"))
 						{
 							FunctionLibrary.waitforElement(driver, Locator_Type, Locator_Value, Test_Data);
 						}
@@ -58,7 +58,7 @@ public class DriverScripts extends FunctionLibrary {
 						}
 						else if (Object_Type.equalsIgnoreCase("clickAction"))
 						{
-							FunctionLibrary.clickAction(driver, Locator_Value, Test_Data);
+							FunctionLibrary.clickAction(driver, Locator_Type, Locator_Value);
 						}
 						else if (Object_Type.equalsIgnoreCase("validateTitle"))
 						{
@@ -67,6 +67,30 @@ public class DriverScripts extends FunctionLibrary {
 						else if (Object_Type.equalsIgnoreCase("closeBrowser"))
 						{
 							FunctionLibrary.closeBrowser(driver);
+						}
+						else if (Object_Type.equalsIgnoreCase("mouseClick"))
+						{
+							FunctionLibrary.mouseClick(driver);
+						}
+						else if (Object_Type.equalsIgnoreCase("categoryTable"))
+						{
+							FunctionLibrary.categoryTable(driver, Test_Data);
+						}
+						else if (Object_Type.equalsIgnoreCase("captureSnumber"))
+						{
+							FunctionLibrary.captureSnumber(driver, Locator_Type, Locator_Value);
+						}
+						else if (Object_Type.equalsIgnoreCase("supplierTable"))
+						{
+							FunctionLibrary.supplierTable(driver);
+						}
+						else if (Object_Type.equalsIgnoreCase("captureCnumber"))
+						{
+							FunctionLibrary.captureCnumber(driver, Locator_Type, Locator_Value);
+						}
+						else if (Object_Type.equalsIgnoreCase("customerTable"))
+						{
+							FunctionLibrary.customerTable(driver);
 						}
 						//write as pass into status cell TCModule
 						xl.setCelldata(TCModule, j, 5, "Pass", outputpath);

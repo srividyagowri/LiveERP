@@ -3,11 +3,15 @@ package commonFunctions;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+import javax.swing.Action;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -120,14 +124,119 @@ public class FunctionLibrary {
 		}
 	}
 	//method for closing browser
-	
+
 	public static void closeBrowser(WebDriver driver)
 	{
 		driver.quit();
 	}
+	//method for mouse click
+	/*public static void mouseClick (WebDriver driver) throws Throwable {
+		Actions ac = new Actions(driver);
+		ac.moveToElement(driver.findElement(By.xpath("//a[starts-with(text(),'Stock Items ')]"))).build().perform();
+		//Thread.sleep(3000);
+		ac.moveToElement(driver.findElement(By.xpath("(//a[contains(text(),'Stock Categories')])[2]"))).click().perform();
 
 
+	}
+	//Validate stock table
+	public static void categoryTable(WebDriver driver,String ExpectedData) throws Throwable {
+		//if search textbox already displayed no need to click search panel
+		if(!driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).isDisplayed())
+			driver.findElement(By.xpath(conpro.getProperty("search-panel "))).click();
+		driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).sendKeys(ExpectedData);
+		Thread.sleep(3000);
+		driver.findElement(By.xpath(conpro.getProperty("search-button"))).click();
+		Thread.sleep(3000);
+	     String ActualData = driver.findElement(By.xpath("//table[@id='tbl_a_stock_categorieslist']/tbody/tr[1]/td[4]/div/span/span")).getText();
+	     System.out.println(ExpectedData +"   " + ActualData);
+	     Assert .assertEquals(ExpectedData, ActualData, "Category name not matching");
+	}*/
 
+	//method for mouse click
 
+	public static void mouseClick(WebDriver driver) throws Throwable
 
+	{
+
+	Actions ac = new Actions(driver);
+
+	ac.moveToElement(driver.findElement(By.xpath("//a[starts-with(text(),'Stock Items ')]"))).perform();
+
+	Thread.sleep(3000);
+
+	ac.moveToElement(driver.findElement(By.xpath("(//a[contains(text(),'Stock Categories')])[2]"))).click().perform();
+
+	}
+
+	//method stock table
+
+	public static void categoryTable(WebDriver driver,String ExpectedData) throws Throwable
+
+	{
+
+	//if search textbox already displayed no need to click search panel
+
+	if(!driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).isDisplayed())
+
+	driver.findElement(By.xpath(conpro.getProperty("search-panel"))).click();
+
+	driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).sendKeys(ExpectedData);
+
+	Thread.sleep(3000);
+
+	driver.findElement(By.xpath(conpro.getProperty("search-button"))).click();
+
+	Thread.sleep(3000);
+
+	String ActualData =driver.findElement(By.xpath("//table[@id='tbl_a_stock_categorieslist']/tbody/tr[1]/td[4]/div/span/span")).getText();
+
+	System.out.println(ExpectedData+"   "+ActualData);
+
+	Assert.assertEquals(ExpectedData, ActualData, "Category Name Not Matching");
+
+	}
+	//method for Capture Supplier number
+	public static void captureSnumber (WebDriver driver,String Locator_Type,String Locator_Value) throws Throwable
+	{
+		Expected =driver.findElement(By.name(Locator_Value)).getAttribute("Value");
+				
+	}
+	//method for supplier table
+	public static void supplierTable(WebDriver driver) throws Throwable {
+		if(!driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).isDisplayed())
+
+			driver.findElement(By.xpath(conpro.getProperty("search-panel"))).click();
+
+			driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).sendKeys(Expected);
+
+			Thread.sleep(3000);
+
+			driver.findElement(By.xpath(conpro.getProperty("search-button"))).click();
+
+			Thread.sleep(3000);
+
+			Actual =driver.findElement(By.xpath("//table[@id ='tbl_a_supplierslist']/tbody/tr[1]/td[6]/div/span/span ")).getText();
+			System.out.println(Expected+"   "+Actual);
+
+			Assert.assertEquals(Expected, Actual, "Supplier Number Not Matching");
+	}
+	//method to capture customer number
+	public static void captureCnumber (WebDriver driver,String Locator_Type,String Locator_Value)
+	{
+		Expected =driver.findElement(By.name(Locator_Value)).getAttribute("Value");
+	}
+	//method for validate customer Table
+	public static void customerTable(WebDriver driver) throws Throwable {
+		if(!driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).isDisplayed())
+
+			driver.findElement(By.xpath(conpro.getProperty("search-panel"))).click();
+
+			driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).sendKeys(Expected);
+			Thread.sleep(3000);
+			driver.findElement(By.xpath(conpro.getProperty("search-button"))).click();
+			Thread.sleep(3000);
+			Actual =driver.findElement(By.xpath("//table[@id ='tbl_a_customerslist']/tbody/tr[1]/td[5]/div/span/span ")).getText();
+			System.out.println(Expected+"   "+Actual);
+			Assert.assertEquals(Expected, Actual, "Customer Number Not Matching");
+	}
 }
