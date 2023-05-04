@@ -1,6 +1,9 @@
 package commonFunctions;
 
 import java.io.FileInputStream;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 
 import javax.swing.Action;
@@ -17,6 +20,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.reporters.jq.Main;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
 import freemarker.core.Environment;
 
 public class FunctionLibrary {
@@ -24,7 +30,7 @@ public class FunctionLibrary {
 	public static Properties conpro;
 	public static String Expected ="";
 	public static String Actual = "";
-
+	
 	//method for launch browser
 
 	public static WebDriver startBrowser() throws Throwable{
@@ -238,5 +244,11 @@ public class FunctionLibrary {
 			Actual =driver.findElement(By.xpath("//table[@id ='tbl_a_customerslist']/tbody/tr[1]/td[5]/div/span/span ")).getText();
 			System.out.println(Expected+"   "+Actual);
 			Assert.assertEquals(Expected, Actual, "Customer Number Not Matching");
+	}
+	//method for date generate
+	public static String generateData() {
+		java.util.Date date =new java.util.Date();
+		DateFormat df =new SimpleDateFormat("YYYY/MM/DD HH/MM");
+		return df.format(date);
 	}
 }
